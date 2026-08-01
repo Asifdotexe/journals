@@ -1,0 +1,27 @@
+{
+  "name": "journals",
+  "version": "1.0.0",
+  "description": "Log book of my personal decision making, learnings and mistakes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Asifdotexe/journals.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Asifdotexe/journals/issues"
+  },
+  "homepage": "https://github.com/Asifdotexe/journals#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2"
+  }
+}
