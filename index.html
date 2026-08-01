@@ -1,0 +1,15 @@
+---
+layout: default
+---
+<div class="home">
+  <ul class="posts">
+    {% for post in collections.journals %}
+      <li>
+        <span class="post-date">{{ post.date | date: "%b %d, %Y" }}</span>
+        <a class="post-link" href="{{ post.url }}">{{ post.data.title }}</a>
+        <br>
+        {{ post.data.excerpt }}
+      </li>
+    {% endfor %}
+  </ul>
+</div>
