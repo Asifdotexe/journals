@@ -6,6 +6,17 @@ excerpt: "This blog contains the raw journal of all the trial and errors I made 
 tags: journal
 ---
 
+<style>
+.post-header h1 {
+    font-size: 35px;
+}
+.post pre,
+.post code {
+    background-color: #EEEEFF;
+    font-size: 13px; /* make code smaller for this post... */
+}
+</style>
+
 - In rust functions are defined as `fn function_name {}`
 - There are somethings called as macros that I don't understand well yet, but one example will be `println!`, notice here the exclamation after println. that is what makes it a macro.
 	  ? What is a macro? need to learn that
