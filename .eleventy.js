@@ -17,8 +17,10 @@ module.exports = function(eleventyConfig) {
     });
   });
 
+  const isGithubActions = process.env.GITHUB_ACTIONS || false;
+
   return {
-    pathPrefix: "/journals/",
+    pathPrefix: isGithubActions ? "/journals/" : "/",
     dir: {
       input: ".",
       includes: "_includes",
