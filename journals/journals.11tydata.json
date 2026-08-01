@@ -1,4 +1,4 @@
 {
   "layout": "post",
-  "permalink": "/{{ page.fileSlug }}/"
+  "permalink": "/journals/{{ page.fileSlug }}/"
 }
