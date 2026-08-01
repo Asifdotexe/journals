@@ -18,6 +18,7 @@ module.exports = function(eleventyConfig) {
   });
 
   return {
+    pathPrefix: "/journals/",
     dir: {
       input: ".",
       includes: "_includes",

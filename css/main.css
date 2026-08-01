@@ -279,10 +279,6 @@ a:visited { color: #205caa; }
 /* Syntax highlighting styles (PrismJS theme mapped to original Rouge colors) */
 /* ----------------------------------------------------------*/
 
-pre[class*="language-"], code[class*="language-"] {
-  background: #ffffff;
-}
-
 .token.comment, .token.prolog, .token.doctype, .token.cdata {
   color: #999988; font-style: italic;
 }
