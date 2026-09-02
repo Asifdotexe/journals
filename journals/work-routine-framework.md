@@ -53,3 +53,18 @@ These routines are supposed to be simple, easy to follow and helpful.
 5. What are the timelines?
 6. What are the immediate next 3 physical actions {% sidenote "action-tems" %} Once again "3" here is arbitrary, the essence is to have clarity on actions items {% endsidenote %}
 7. If you have an intern, ask what can be delegated?
+
+## Meeting template
+Keeping it here so that it is handy for whenever I want it, this template is basically what I have been using for my meetings since August 17th, at the time of writing this note on 2nd September this works well
+
+```markdown
+## Date:
+#### Updates
+#### Jot downs
+#### Action items
+- [ ] Do this
+- [ ] Do that
+```
+- Update is supposed to be for anything that goes from you to the attendees (stakeholders or team)
+- Jot downs are supposed to be the capture area for anything that comes from the attendees to you
+- Action items are supposed to be extracted from the captured notes during the reconciliation meeting and should follow the rules provided in 1.4.
