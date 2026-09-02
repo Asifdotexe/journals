@@ -20,11 +20,11 @@ tags:
 
 Good question, I created this journal website to act as a storage for my raw thoughts, while ideating and updating the project, it can also be used for journaling some best practices, how-to's so and so forth. {% sidenote "prasad" %} Credits to my friend [Prasad Raju](https://iamprasadraju.github.io/) for giving me the idea for this journal! {% endsidenote %}
 
-More of less the idea is to be pretty informal, not a very formal structure, thinking out loud and penning it down type of routine? I hope this doesn't get exhausting and can result in some good material for myself or someone else to go back and read.
+More or less the idea is to be pretty informal, not a very formal structure, thinking out loud and penning it down type of routine? I hope this doesn't get exhausting and can result in some good material for myself or someone else to go back and read.
 
 ## How to run this project?
 
-Of course, starting by cloning the repository, having obsidian set up and I like to open the obsidian directly opened up in the `/journals` folder because I prefer writing directly into obsidian instead of updating markdown files
+Of course, starting by cloning the repository, having obsidian set up and I like to open the obsidian directly in the `/journals` folder because I prefer writing directly into obsidian instead of updating markdown files
 
 ```bash
 npm run build
