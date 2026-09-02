@@ -2,6 +2,13 @@ const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight);
+
+  // Add shortcode for sidenote
+  eleventyConfig.addPairedShortcode("sidenote", function(content, id) {
+    return `<label for="${id}" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="${id}" class="margin-toggle">
+<span class="sidenote">${content}</span>`;
+  });
   // Passthrough copy for static assets
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("assets");
