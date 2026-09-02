@@ -1,0 +1,31 @@
+---
+layout: default
+pagination:
+  data: collections
+  size: 1
+  alias: tag
+  filter:
+    - all
+    - nav
+    - post
+    - posts
+    - journals
+permalink: /tags/{{ tag | slugify }}/
+---
+<div class="home">
+  <h1>Tagged “{{ tag }}”</h1>
+  
+  <ul class="posts">
+    {% assign taglist = collections[tag] %}
+    {% for post in taglist reversed %}
+      <li>
+        <span class="post-date">{{ post.date | date: "%b %d, %Y" }}</span>
+        <a class="post-link" href="{{ post.url | url }}">{{ post.data.title }}</a>
+        <br>
+        {{ post.data.excerpt }}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <p><a href="{{ '/tags/' | url }}">Browse all tags</a></p>
+</div>
