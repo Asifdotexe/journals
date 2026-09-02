@@ -4,7 +4,6 @@ title: "Project Log: Vent"
 author: Asif Sayyed
 excerpt: This journal contains all the decisions I made and why I made them while developing towards updating / refactoring the Vent project
 tags:
-  - journal
   - ideation
 ---
 <style>

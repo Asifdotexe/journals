@@ -4,7 +4,6 @@ title: "Project Log: Ship of Theseus"
 author: Asif Sayyed
 excerpt: This journal contains all the decisions I made and why I made them while developing towards updating / refactoring the Ship of Theseus project
 tags:
-  - journal
   - project
 ---
 <style>

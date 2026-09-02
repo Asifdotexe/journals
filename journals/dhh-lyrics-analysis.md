@@ -4,7 +4,6 @@ title: "Project Log: DHH Lyrics Analysis"
 author: Asif Sayyed
 excerpt: This journal contains all the decisions I made and why I made them while developing towards updating / refactoring the DHH Lyrics Analysis project
 tags:
-  - journal
   - ideation
 ---
 <style>
