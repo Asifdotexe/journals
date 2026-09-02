@@ -1,0 +1,17 @@
+---
+layout: default
+permalink: /tags/
+title: All Tags
+---
+<div class="home">
+  <h1>All Tags</h1>
+  
+  <ul>
+    {% for tag in collections %}
+      {% assign tagName = tag[0] %}
+      {% if tagName != 'all' and tagName != 'journals' %}
+        <li><a href="{{ '/tags/' | append: tagName | slugify | append: '/' | url }}">{{ tagName }}</a> ({{ tag[1].size }})</li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>

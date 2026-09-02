@@ -3,9 +3,19 @@ layout: post
 title: "Project Log: DHH Lyrics Analysis"
 author: Asif Sayyed
 excerpt: This journal contains all the decisions I made and why I made them while developing towards updating / refactoring the DHH Lyrics Analysis project
-tags: journal
+tags:
+  - ideation
 ---
-
+<style>
+.post-header h1 {
+    font-size: 35px;
+}
+.post pre,
+.post code {
+    background-color: #EEEEFF;
+    font-size: 13px; /* make code smaller for this post... */
+}
+</style>
 ## 2026-08-02
 
 ### Brainstorming
@@ -29,5 +39,12 @@ To make a vocabulary barometer (unique word count) for a fixed list of artists. 
 How will we get the data?
 - Python script using `bs4` to scrape lyrics from Genius of those 50 songs (5 artists top 10)
 - Cleaning would be required to remove things like `[Chorus]` and `[Verse]` brackets and punctuation
-- For the NLP engine, we will keep the scope limited and not build the complex LID (language identification) classifier to seperate hindi from english, instead planning to treat all words regardless of language as tokens. (apply lowercasing > count unique tokens)
+- For the NLP engine, we will keep the scope limited and not build the complex LID (language identification) classifier to separate Hindi from English, instead planning to treat all words regardless of language as tokens. (apply lowercasing > count unique tokens)
 - Output will be a single bar chart that shows "the count of unique words in top 10 tracks for each artist"
+
+### Suggestions by people
+- Artist vs self evaluation
+- How they are abstracting simple concepts, using similes, references, analogies or other technical terms like punchlines, storytelling
+
+### Research on
+- How to perform lyrical analysis without using AI? is this feasible?

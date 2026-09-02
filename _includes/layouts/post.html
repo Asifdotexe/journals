@@ -4,7 +4,15 @@ layout: default
 <div class="post">
   <header class="post-header">
     <h1>{{ title }}</h1>
-    <p class="meta">{{ page.date | date: "%b %d, %Y" }}{% if author %} • {{ author }}{% endif %}</p>
+    <p class="meta">
+      {{ page.date | date: "%b %d, %Y" }}{% if author %} • {{ author }}{% endif %}
+      {% if tags %}
+        • Tags: 
+        {% for tag in tags %}
+          <a href="{{ '/tags/' | append: tag | slugify | append: '/' | url }}">{{ tag }}</a>{% if forloop.last == false %}, {% endif %}
+        {% endfor %}
+      {% endif %}
+    </p>
   </header>
 
   <article class="post-content">
