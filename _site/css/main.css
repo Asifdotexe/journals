@@ -458,6 +458,10 @@ label.margin-toggle:not(.sidenote-number) {
 }
 
 @media screen and (min-width: 1400px) {
+  .wrap {
+    padding-right: 330px;
+  }
+
   .sidenote,
   .marginnote {
     float: right;
