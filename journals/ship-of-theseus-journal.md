@@ -1,11 +1,22 @@
 ---
 layout: post
 title: "Project Log: Ship of Theseus"
-author: "Asif Sayyed"
-excerpt: "This journal contains all the decisions I made and why I made them while developing towards updating / refactoring the Ship of Theseus project"
-tags: journal
+author: Asif Sayyed
+excerpt: This journal contains all the decisions I made and why I made them while developing towards updating / refactoring the Ship of Theseus project
+tags:
+  - journal
+  - project
 ---
-
+<style>
+.post-header h1 {
+    font-size: 35px;
+}
+.post pre,
+.post code {
+    background-color: #EEEEFF;
+    font-size: 13px; /* make code smaller for this post... */
+}
+</style>
 ## 2026-07-25
 
 ### Goal: Update open graph (social preview) image

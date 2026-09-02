@@ -1,9 +1,11 @@
 ---
 layout: post
 title: "Learning Rust: moving from Python to Rust"
-author: "Asif Sayyed"
-excerpt: "This blog contains the raw journal of all the trial and errors I made while learning rust and all the nuances I wanted to keep track of"
-tags: journal
+author: Asif Sayyed
+excerpt: This blog contains the raw journal of all the trial and errors I made while learning rust and all the nuances I wanted to keep track of
+tags:
+  - journal
+  - learning
 ---
 
 <style>
