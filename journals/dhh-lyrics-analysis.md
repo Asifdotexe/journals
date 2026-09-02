@@ -20,7 +20,7 @@ tags:
 
 ### Brainstorming
 #### Core pain point
-Currently there are arguments about "who is the most lyrical artists in Desi hip-hop" and we tend to rely on subjective opinions, twitter/X debates and reaction videos. there is no objective data-driven way for fans to compare lyrical complexity of their favorite artists and there is no centralized tool for industry professionals to understand how an artist's subject matter or linguistic style (e.g., their mix of English vs Hindi) has shifted over time
+Currently there are arguments about "who is the most lyrical artists in Desi hip-hop" {% sidenote "favourite-artist" %} Things asides, I love Seedhemaut. {% endsidenote %}. and we tend to rely on subjective opinions, twitter/X debates and reaction videos. there is no objective data-driven way for fans to compare lyrical complexity of their favorite artists and there is no centralized tool for industry professionals to understand how an artist's subject matter or linguistic style (e.g., their mix of English vs Hindi) has shifted over time
 
 #### What will the user get? (value preposition)
 The dashboard will provide a quantified view of the lyrical culture in DHH, this can help people have definitive answers to settle debates or just source of truth for discussions and also can serve as a fascinating look into an artist's journey.
