@@ -2,6 +2,7 @@
 layout: post
 title: "ghpm: GitHub project management"
 author: Asif Sayyed
+date: 2026-09-07
 excerpt: This journal all the decisions I made and why I made them while developing towards updating / refactoring the GHPM project
 tags:
   - project

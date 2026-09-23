@@ -2,6 +2,7 @@
 layout: post
 title: "Project Log: DHH Lyrics Analysis"
 author: Asif Sayyed
+date: 2026-08-02
 excerpt: This journal contains all the decisions I made and why I made them while developing towards updating / refactoring the DHH Lyrics Analysis project
 tags:
   - ideation

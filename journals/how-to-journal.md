@@ -2,6 +2,7 @@
 layout: post
 title: Guide to journaling
 author: Asif Sayyed
+date: 2026-09-02
 excerpt: This journal contains all the little things about making / maintaining journals on this website
 tags:
   - help
@@ -52,6 +53,7 @@ Important Details:
 layout: post
 title: Guide to journaling
 author: Asif Sayyed
+date: 2026-09-02
 excerpt: This journal contains all the little things about making / maintaining journals on this website
 tags:
   - help
