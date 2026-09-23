@@ -2,6 +2,7 @@
 layout: post
 title: Work Routine, Best Practices and Frameworks
 author: Asif Sayyed
+date: 2026-09-02
 excerpt: This journal is about my current work routine and framework that work, this is subject to update in future
 tags:
   - help

@@ -2,6 +2,7 @@
 layout: post
 title: "Project Log: Vent"
 author: Asif Sayyed
+date: 2026-08-04
 excerpt: This journal contains all the decisions I made and why I made them while developing towards updating / refactoring the Vent project
 tags:
   - project
