@@ -3,8 +3,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{% if title %}{{ title }}{% else %}{{ site.title }}{% endif %}</title>
     <meta name="viewport" content="width=device-width">
-    <meta name="description" content="{{ site.description }}">
-    <link rel="canonical" href="{{ site.url }}{{ page.url | url }}">
+    <meta name="description" content="{% if excerpt %}{{ excerpt | strip_html | strip_newlines | escape }}{% else %}{{ site.description }}{% endif %}">
+    <link rel="canonical" href="https://asifdotexe.github.io{{ page.url | url }}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | url }}">
+    <link rel="alternate icon" href="{{ '/assets/favicon.ico' | url }}">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="{% if layout == 'post' %}article{% else %}website{% endif %}">
+    <meta property="og:site_name" content="{{ site.title }}">
+    <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ site.title }}{% endif %}">
+    <meta property="og:description" content="{% if excerpt %}{{ excerpt | strip_html | strip_newlines | escape }}{% else %}{{ site.description }}{% endif %}">
+    <meta property="og:url" content="https://asifdotexe.github.io{{ page.url | url }}">
+    <meta property="og:image" content="https://asifdotexe.github.io{{ '/assets/og-image.png' | url }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% if title %}{{ title }}{% else %}{{ site.title }}{% endif %}">
+    <meta name="twitter:description" content="{% if excerpt %}{{ excerpt | strip_html | strip_newlines | escape }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="twitter:image" content="https://asifdotexe.github.io{{ '/assets/og-image.png' | url }}">
+
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ '/css/main.css?v=2' | url }}">
+    <link rel="stylesheet" href="{{ '/css/main.css?v=3' | url }}">
 </head>

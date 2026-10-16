@@ -9,7 +9,9 @@ layout: default
       {% if tags %}
         • Tags: 
         {% for tag in tags %}
-          <a href="{{ '/tags/' | append: tag | slugify | append: '/' | url }}">{{ tag }}</a>{% if forloop.last == false %}, {% endif %}
+          {% assign tagSlug = tag | slugify %}
+          {% assign tagUrl = '/tags/' | append: tagSlug | append: '/' %}
+          <a href="{{ tagUrl | url }}">{{ tag }}</a>{% if forloop.last == false %}, {% endif %}
         {% endfor %}
       {% endif %}
     </p>
