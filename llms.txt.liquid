@@ -1,0 +1,30 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+# Asif's Journal
+
+> A raw engineering logbook of software engineering, trial and errors, developer workflows, and technical decision-making by Asif Sayyed.
+
+## Author & Entities
+- Author: Asif Sayyed
+- Portfolio: https://sayyedasif.com
+- Main Blog: https://sayyedasif.com/blogs
+- GitHub: https://github.com/Asifdotexe
+- LinkedIn: https://linkedin.com/in/sayyedasif
+- Repository: https://github.com/Asifdotexe/journals
+
+## Core Topics
+- Developer productivity and local environment optimization
+- Windows administration, disk management, and CLI automation (PowerShell, Robocopy, Diskpart)
+- Rust programming language and transitioning from Python
+- Dashboard engineering, issue tracking, and analytics
+- Architecture decisions, trials, errors, and post-mortems
+
+## Journal Entries
+{% for post in collections.journals %}
+- [{{ post.data.title }}](https://asifdotexe.github.io{{ post.url | url }}): {{ post.data.excerpt | strip_html | strip_newlines }}
+{% endfor %}
+
+## Tag Indexes
+- [All Tags](https://asifdotexe.github.io{{ '/tags/' | url }})

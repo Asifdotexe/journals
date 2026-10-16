@@ -10,6 +10,13 @@
     <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | url }}">
     <link rel="alternate icon" href="{{ '/assets/favicon.ico' | url }}">
 
+    <!-- SEO Directives -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <meta name="author" content="Asif Sayyed">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://asifdotexe.github.io{{ '/sitemap.xml' | url }}">
+
     <!-- Open Graph / Social Sharing -->
     <meta property="og:type" content="{% if layout == 'post' %}article{% else %}website{% endif %}">
     <meta property="og:site_name" content="{{ site.title }}">
@@ -25,6 +32,87 @@
     <meta name="twitter:title" content="{% if title %}{{ title }}{% else %}{{ site.title }}{% endif %}">
     <meta name="twitter:description" content="{% if excerpt %}{{ excerpt | strip_html | strip_newlines | escape }}{% else %}{{ site.description }}{% endif %}">
     <meta name="twitter:image" content="https://asifdotexe.github.io{{ '/assets/og-image.png' | url }}">
+
+    <!-- AEO / Schema.org JSON-LD (Answer Engine & Generative Engine Optimization) -->
+    {% if layout == 'post' %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "{{ title | escape }}",
+      "description": "{% if excerpt %}{{ excerpt | strip_html | strip_newlines | escape }}{% else %}{{ site.description }}{% endif %}",
+      "image": "https://asifdotexe.github.io{{ '/assets/og-image.png' | url }}",
+      "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
+      "dateModified": "{{ page.date | date: '%Y-%m-%d' }}",
+      "inLanguage": "en-US",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://asifdotexe.github.io{{ page.url | url }}"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Asif Sayyed",
+        "url": "https://sayyedasif.com",
+        "sameAs": [
+          "https://github.com/Asifdotexe",
+          "https://linkedin.com/in/sayyedasif"
+        ]
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Asif Sayyed",
+        "url": "https://sayyedasif.com"
+      }{% if tags %},
+      "keywords": "{% for tag in tags %}{{ tag }}{% if forloop.last == false %}, {% endif %}{% endfor %}"{% endif %}
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://asifdotexe.github.io{{ '/' | url }}"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Journals",
+          "item": "https://asifdotexe.github.io{{ '/' | url }}"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "{{ title | escape }}",
+          "item": "https://asifdotexe.github.io{{ page.url | url }}"
+        }
+      ]
+    }
+    </script>
+    {% else %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Asif's Journal",
+      "description": "My development and learning journals.",
+      "url": "https://asifdotexe.github.io{{ '/' | url }}",
+      "inLanguage": "en-US",
+      "author": {
+        "@type": "Person",
+        "name": "Asif Sayyed",
+        "url": "https://sayyedasif.com",
+        "sameAs": [
+          "https://github.com/Asifdotexe",
+          "https://linkedin.com/in/sayyedasif"
+        ]
+      }
+    }
+    </script>
+    {% endif %}
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ '/css/main.css?v=3' | url }}">
