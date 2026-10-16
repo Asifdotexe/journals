@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e2238"/>
+      <stop offset="100%" stop-color="#0f111d"/>
+    </linearGradient>
+    <linearGradient id="spine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1a5ec8"/>
+      <stop offset="100%" stop-color="#2a7ae2"/>
+    </linearGradient>
+  </defs>
+  <!-- Background squircle -->
+  <rect width="64" height="64" rx="16" fill="url(#bg)"/>
+
+  <!-- Journal cover shadow & spine -->
+  <rect x="13" y="11" width="38" height="42" rx="4" fill="url(#spine)"/>
+  <rect x="13" y="11" width="8" height="42" rx="2" fill="#154cb0"/>
+
+  <!-- Journal pages -->
+  <path d="M22 13h27a2 2 0 0 1 2 2v34a2 2 0 0 1-2 2H22V13z" fill="#f8fafc"/>
+
+  <!-- Content lines on page -->
+  <rect x="26" y="21" width="20" height="3" rx="1.5" fill="#2a7ae2" opacity="0.85"/>
+  <rect x="26" y="28" width="16" height="2.5" rx="1.25" fill="#94a3b8"/>
+  <rect x="26" y="34" width="19" height="2.5" rx="1.25" fill="#94a3b8"/>
+  <rect x="26" y="40" width="12" height="2.5" rx="1.25" fill="#94a3b8"/>
+
+  <!-- Bookmark ribbon -->
+  <path d="M36 11v14l-4-3-4 3V11h8z" fill="#f59e0b"/>
+</svg>
