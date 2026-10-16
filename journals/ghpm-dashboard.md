@@ -51,3 +51,11 @@ NOTE: Things that are written in *italics* are things already implemented across
 - This tool doesn't help with prioritization, ideally the major problem for me specifically.
 - This doesn't help me in scoping of projects
 - This doesn't help me in managing the timeline
+
+## I worked on updating the dashboard a little (v1.1.0)
+
+Previously the dashboard didn't have any trend indicator, so it was just some arbitary jump in numbers every year that I had no idea about, so I wanted to add a few things
+- directional cues for KPIs
+- issue open and close tracking
+
+specifically for issue open and close tracking, I added new barcharts and also back propogated the data until 2022.
