@@ -2,7 +2,7 @@
 layout: post
 title: "Saving the sinking ship: Project Theseus"
 author: Asif Sayyed
-date: 2026-10-18
+date: 2026-10-26
 excerpt: Journalling the mistakes made during the v1.0.0 of Theseus and how we fixed them in v2.0.0
 tags:
   - project
