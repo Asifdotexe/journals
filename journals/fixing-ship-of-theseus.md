@@ -3,7 +3,7 @@ layout: post
 title: "Saving the sinking ship: Project Theseus"
 author: Asif Sayyed
 date: 2026-10-18
-excerpt: Journalling the mistakes made during the v1.0.0 of Theseus
+excerpt: Journalling the mistakes made during the v1.0.0 of Theseus and how we fixed them in v2.0.0
 tags:
   - project
 ---
@@ -96,6 +96,7 @@ Now this is just me describing the features, but if you'd want to try it out for
 Optimistically speaking, if you are reading this blog after 2026, this is most likely fixed so if you want to understand how the codebase looked at the time of writing it, then you can use git to traverse back to the following commit 
 - `a5181b3067ce4d6abf90087572eddb1d132804c2` using the following repository: [https://github.com/Asifdotexe/Theseus](https://github.com/Asifdotexe/Theseus)
 
+(PS: The implementation is done)
 ### Now, what went wrong?
 
 A lot, and I believe the best way to explain that would be a timeline. ready for the scare?
@@ -319,7 +320,10 @@ Now, Cloudflare Workers serves client assets exclusively. If a malicious bot or 
 3. *Why am I spawning hundreds of OS processes when a library with C-bindings exists?* (`libgit2` via Rust beats `subprocess.Popen` in Python every single day of the week).
 4. *Where does the public web root end, and where does my private pipeline begin?* (Always quarantine static assets in `public/`).
 
-## Even if you understood nothing from this blog, at least takeaway these four system design learnings if you are working on a similar nature of project.
+## Takeaways in short
+
+Even if you understood nothing from this blog, at least takeaway these four system design learnings if you are working on a similar nature of project.
+
 - **Don't fight the runtimes instead partition them:** Use compiled systems languages for heavy parallel computation, and high-level scripting languages for orchestration.
 - **Silent failure is worse than a hard crash:** If your cache fails to deserialize, crash loudly with a descriptive error. Do not default to empty and burn 20 hours recomputing state.
 - **Piggyback on loops you are already running:** If you are already touching every line in the file, extract your secondary metrics in the same loop. Free data is the best data.
