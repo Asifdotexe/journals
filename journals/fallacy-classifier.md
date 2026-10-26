@@ -36,16 +36,16 @@ This is the userflow in the nutshell {% sidenote "more-to-user-flow" %} I want t
 
 ## Why does this exists?
 
-For the love of the game, I honestly enjoy debates but there is a difference between a heated arguement and a well structured and well executed debates and it is to do with how well someone puts out their statement
+For the love of the game, I honestly enjoy debates but there is a difference between a heated argument and a well structured and well executed debates and it is to do with how well someone puts out their statement
 
 In debates people can sometimes be disingenuous sometimes on purpose, sometimes by mistake.
 
 So having a good understanding of whether a given statement is fallcious or not is a good starting step to weed out poor arguments and debates with no ends.
 
-This is to ensure that both parties have a easier time as you will gain the ability to detech and breakdown logical fallcies leading to the following benefits.
+This is to ensure that both parties have a easier time as you will gain the ability to detect and breakdown logical fallcies leading to the following benefits.
 
-- You are able to make sounder and robust statements / arguements
-- You are able to smell unsound or half-baked statements / arguements
+- You are able to make sounder and robust statements / arguments
+- You are able to smell unsound or half-baked statements / arguments
 
 Currently the way elenchus works is by recording you on adhoc basis and giving you rationale / rebuttals, so you can think of it as a sparring partner for you. I had attached a screenshot of how it looks below
 
@@ -64,7 +64,7 @@ Now if I were to talk about the resource footprint of the root as I write this j
 
 - Speech to text that utilises faster-whisper uses around 500-MB to 1GB RAM (NO VRAM used here)
 - Qwen model for reasoning uses around ~2.2GB or VRAM
-- Audio capture and voice activity detection relies on [sounddevice](https://pypi.org/project/sounddevice/) and uses less than 40 GB RAM (only CPU)
+- Audio capture and voice activity detection relies on [sounddevice](https://pypi.org/project/sounddevice/) and uses less than 40 MB RAM (only CPU)
 - Last but not the least, UI takes less than 80 MB of RAM and uses the GPU or compositor
 
 ## How do I distribute?
@@ -87,3 +87,4 @@ Relevant links:
 - Elenchus releases: [https://github.com/Asifdotexe/Elenchus/releases](https://github.com/Asifdotexe/Elenchus/releases)
 - Elenchus issues: [https://github.com/Asifdotexe/Elenchus/issues](https://github.com/Asifdotexe/Elenchus/issues)
 - Elenchus website: [https://asifdotexe.github.io/Elenchus/](https://asifdotexe.github.io/Elenchus/)
+- Elenchus documentation: [https://asifdotexe.github.io/Elenchus/docs](https://asifdotexe.github.io/Elenchus/docs)

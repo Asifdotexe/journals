@@ -418,6 +418,10 @@ body {
   counter-increment: sidenote-counter;
 }
 
+.sidenote-number[data-number] {
+  counter-increment: none;
+}
+
 .sidenote-number:after,
 .sidenote:before {
   position: relative;
@@ -433,6 +437,10 @@ body {
   font-size: 12px;
 }
 
+.sidenote-number[data-number]:after {
+  content: attr(data-number);
+}
+
 .sidenote:before {
   content: counter(sidenote-counter) " ";
   top: -0.5em;
@@ -441,16 +449,30 @@ body {
   margin-left: -0.75em !important;
 }
 
+.sidenote[data-number]:before {
+  content: attr(data-number) " ";
+}
+
 input.margin-toggle {
   display: none;
 }
 
-label.sidenote-number {
+label.sidenote-number,
+a.sidenote-number {
   margin-left: -0.2em;
   display: inline-block;
   max-height: 2em;
   color: #2a7ae2;
   cursor: pointer;
+  text-decoration: none;
+}
+
+.sidenote:target {
+  background-color: rgba(42, 122, 226, 0.08);
+  outline: 2px solid #2a7ae2;
+  border-radius: 4px;
+  padding: 4px;
+  transition: all 0.3s ease;
 }
 
 label.margin-toggle:not(.sidenote-number) {
@@ -489,7 +511,8 @@ label.margin-toggle:not(.sidenote-number) {
   }
 
   .margin-toggle:checked + .sidenote,
-  .margin-toggle:checked + .marginnote {
+  .margin-toggle:checked + .marginnote,
+  .sidenote:target {
     display: block;
     float: none;
     clear: both;
@@ -626,4 +649,27 @@ label.margin-toggle:not(.sidenote-number) {
   background: #143825;
   color: #85d799;
   border-color: #2e7d32;
+}
+
+
+/* KaTeX / Math styling */
+/* ----------------------------------------------------------*/
+eq {
+  display: inline;
+}
+
+section:has(> eqn),
+eqn {
+  display: block;
+  margin: 1.2em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
+
+.katex-display {
+  margin: 0.8em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4px 0;
 }
