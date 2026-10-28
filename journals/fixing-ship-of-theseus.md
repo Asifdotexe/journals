@@ -39,37 +39,7 @@ We can similarly think about how codebases change, not one plank at a time but o
 
 The core functionalities of Theseus at the time of writing can be consolidated in 5 simple workflows and here a flow diagram of how it goes and processes each repository
 
-```
-                      ┌──────────────────────────────────────┐
-                      │    Target Git Repository (Remote)    │
-                      └──────────────────┬───────────────────┘
-                                         │ Clone / Fetch
-                                         ▼
-                      ┌──────────────────────────────────────┐
-                      │            THESEUS ENGINE            │
-                      │  • Walk Commit History (Quarterly/M) │
-                      │  • Diff Git Tree to Tree             │
-                      │  • Parallel Line-Porcelain Blame     │
-                      │  • Track Fossil Identifiers          │
-                      └──────────────────┬───────────────────┘
-                                         │ Generates
-                                         ▼
-                      ┌──────────────────────────────────────┐
-                      │        DATA PERSISTENCE LAYER        │
-                      │  1. History Time-Series (Snapshots)  │
-                      │  2. Fossils (Genesis + Living)       │
-                      │  3. Milestones (Historical Context)  │
-                      └──────────────────┬───────────────────┘
-                                         │ Static Fetch (JSON)
-                                         ▼
-                      ┌──────────────────────────────────────┐
-                      │        OBSERVATORY FRONTEND          │
-                      │  • D3.js Stacked Area Graph          │
-                      │  • Chronological vs Identity Modes   │
-                      │  • Time Scrubber & Entropy Metrics   │
-                      │  • Deep-linked Fossil Cards          │
-                      └──────────────────────────────────────┘
-```
+![under-tech](../assets/notes_assets/fixing-ship-of-theseus/under-tech.png)
 
 1. Sampling: Extracting historical commits across a repository's lifespan, This is done quarterly (pre-2025) i.e. months `03`, `06`, `09`, `12`. and monthly 2025+ i.e., `01` through `12`
 2. Attributing authoring and bucketing the code-lines: 
@@ -183,15 +153,7 @@ Git isn't a list of diffs. Git is a **content-addressed Merkle Directed Acyclic 
 
 Every commit points to a root **Tree** object. That tree points to subtrees (directories) and blobs (files). Each tree has an immutable SHA-1 or SHA-256 hash calculated strictly from its contents. {% sidenote "sha1-vs-sha256" %} Why both? Historically, Git used 160-bit SHA-1 hashes (the familiar 40-character hex strings we all copy-paste). But after researchers proved SHA-1 collision attacks were practical in 2017 (the SHAttered attack), Git began transitioning to 256-bit SHA-256 (64-character strings). In simple terms: a hash is a digital fingerprint. If you change even a single comma in a file, its fingerprint changes completely. SHA-1 gives a 40-character fingerprint; SHA-256 gives a 64-character fortress. Git supports both today. {% endsidenote %}
 
-```
-       [Commit A (2023-01)]                     [Commit B (2023-04)]
-         Tree OID: a1b2c3                         Tree OID: d4e5f6
-          /            \                           /            \
-    Subtree: src/   Subtree: docs/           Subtree: src/   Subtree: docs/
-    (OID: 778899)   (OID: 112233)            (OID: 778899)   (OID: 445566)
-          │                                        │                │
-     [UNCHANGED!]                             [UNCHANGED!]     [MODIFIED!]
-```
+![git-dag](../assets/notes_assets/fixing-ship-of-theseus/git-dag.png)
 
 Look at `src/` in the diagram above. Notice how `src/` has the exact same Tree OID (`778899`) in both Commit A and Commit B?
 
@@ -208,23 +170,7 @@ Where:
 - $T_t$ is the Git Tree object at snapshot $t$.
 - $\Delta(T_{t-1}, T_t)$ is the set of files that were added, modified, or deleted between trees.
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                             THE TWO APPROACHES                              │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ NAIVE (BRUTE FORCE):                                                        │
-│ Snapshot 1 (2020): Blame 5,000 files ─────────────► Takes 8 minutes         │
-│ Snapshot 2 (2021): Blame 5,000 files (again!) ────► Takes 8 minutes         │
-│ Snapshot 3 (2022): Blame 5,000 files (again!) ────► Takes 8 minutes         │
-│                                                                             │
-│ LEAN MERKLE RECURRENCE:                                                     │
-│ Snapshot 1 (2020): Blame 5,000 files ─────────────► Takes 8 seconds (Rust)  │
-│ Snapshot 2 (2021): Diff T1->T2: Only 12 files changed!                      │
-│                    Blame 12 files, carry forward 4,988! ──► Takes 0.2 sec   │
-│ Snapshot 3 (2022): Diff T2->T3: Only 8 files changed!                       │
-│                    Blame 8 files, carry forward 4,992! ──► Takes 0.1 sec    │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
+![theseus-old-vs-new-approach](../assets/notes_assets/fixing-ship-of-theseus/theseus-old-vs-new-approach.png)
 
 Using `libgit2`'s `diff_tree_to_tree()`, Git instantly tells us which specific file blobs changed. We only blame the modified files and update our histogram. Everything else is carried forward! {% sidenote "merkle-gist" %} Layman translation: If you want to know what changed in a 500-page book from edition 1 to edition 2, you don't re-read all 500 pages from cover to cover. You look at the publisher's changelog, see that only Chapter 4 was revised, read those 10 pages, and carry forward the rest. {% endsidenote %}
 
@@ -273,24 +219,7 @@ And honestly I was almost there too. But then I asked myself: What is Python act
 
 The real architectural breakthrough wasn't declaring a holy war between languages; **it was drawing a clean, uncrossable boundary between them.** So here is how I see it:
 
-```
-┌────────────────────────────────────────────────────────┐
-│               PYTHON (The Control Plane)               │
-│   • Clones repository once to temporary directory      │
-│   • Resolves arguments and snapshot date intervals     │
-│   • Spawns the Rust release binary                     │
-│   • Validates output JSON schemas and test assertions  │
-└───────────────────────────┬────────────────────────────┘
-                            │ CLI Flags (--repo, --out)
-                            ▼
-┌────────────────────────────────────────────────────────┐
-│                RUST (The Compute Engine)               │
-│   • Fast parallel git traversal via libgit2 & Rayon    │
-│   • Merkle tree diffing (T_{t-1} -> T_t)               │
-│   • Single-pass Genesis & Living Fossil extraction     │
-│   • Writes unified StateData and history JSONL         │
-└────────────────────────────────────────────────────────┘
-```
+![seperation-of-concerns](../assets/notes_assets/fixing-ship-of-theseus/sep-of-concerns.png)
 
 That separation turned a fragile implementation into something that I would like to call a joy to maintain (as I am the only one maintaining it right now).
 

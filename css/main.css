@@ -16,6 +16,11 @@ body {
   background-color: #fdfdfd;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: 400; }
 
 a         { color: #2a7ae2; text-decoration: none; }
@@ -270,6 +275,32 @@ a:visited { color: #205caa; }
   color: #555;
   font-size: 14px;
   text-align: center;
+}
+
+/* Responsive media and images */
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.5em auto;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.post-content figure {
+  max-width: 100%;
+  margin: 1.5em auto;
+  text-align: center;
+}
+
+.post-content figure img {
+  margin: 0 auto;
+}
+
+.post-content table {
+  max-width: 100%;
+  overflow-x: auto;
+  display: block;
 }
 
 .svgdiv {

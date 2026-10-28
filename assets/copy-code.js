@@ -103,4 +103,53 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
+
+  // Automatically open all external links in a new tab without replacing the current page
+  function setupExternalLinks() {
+    var links = document.querySelectorAll('a[href]');
+    links.forEach(function (link) {
+      var href = link.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) {
+        return;
+      }
+
+      try {
+        var url = new URL(link.href, window.location.href);
+        if (url.origin !== window.location.origin) {
+          link.setAttribute('target', '_blank');
+          link.setAttribute('rel', 'noopener noreferrer');
+        }
+      } catch (e) {
+        if (/^(https?:)?\/\//i.test(href)) {
+          link.setAttribute('target', '_blank');
+          link.setAttribute('rel', 'noopener noreferrer');
+        }
+      }
+    });
+  }
+
+  setupExternalLinks();
+
+  // Delegated click listener to ensure any dynamically clicked external link opens in a new tab
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) {
+      return;
+    }
+
+    try {
+      var url = new URL(link.href, window.location.href);
+      if (url.origin !== window.location.origin) {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+      }
+    } catch (err) {
+      if (/^(https?:)?\/\//i.test(href)) {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+      }
+    }
+  }, true);
 });
