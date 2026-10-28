@@ -219,24 +219,7 @@ And honestly I was almost there too. But then I asked myself: What is Python act
 
 The real architectural breakthrough wasn't declaring a holy war between languages; **it was drawing a clean, uncrossable boundary between them.** So here is how I see it:
 
-```
-┌────────────────────────────────────────────────────────┐
-│               PYTHON (The Control Plane)               │
-│   • Clones repository once to temporary directory      │
-│   • Resolves arguments and snapshot date intervals     │
-│   • Spawns the Rust release binary                     │
-│   • Validates output JSON schemas and test assertions  │
-└───────────────────────────┬────────────────────────────┘
-                            │ CLI Flags (--repo, --out)
-                            ▼
-┌────────────────────────────────────────────────────────┐
-│                RUST (The Compute Engine)               │
-│   • Fast parallel git traversal via libgit2 & Rayon    │
-│   • Merkle tree diffing (T_{t-1} -> T_t)               │
-│   • Single-pass Genesis & Living Fossil extraction     │
-│   • Writes unified StateData and history JSONL         │
-└────────────────────────────────────────────────────────┘
-```
+![seperation-of-concerns](../assets/notes_assets/fixing-ship-of-theseus/sep-of-concerns.png)
 
 That separation turned a fragile implementation into something that I would like to call a joy to maintain (as I am the only one maintaining it right now).
 

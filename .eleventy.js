@@ -96,7 +96,7 @@ module.exports = function(eleventyConfig) {
     const hrefIndex = token.attrIndex("href");
     if (hrefIndex >= 0) {
       const href = token.attrs[hrefIndex][1] || "";
-      if (!href.startsWith("#")) {
+      if (/^(https?:)?\/\//i.test(href)) {
         token.attrSet("target", "_blank");
         token.attrSet("rel", "noopener noreferrer");
       }
