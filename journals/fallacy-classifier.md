@@ -25,7 +25,7 @@ Elenchus is a HUD {% sidenote "what-hub" %} [HUD = Heads up display](https://www
 
 Additional nicety is that it requires no token cost and runs locally in a very lightweight manner. {% sidenote "learn-rust-please" %} Please pray that I am able to pull through on my promise of [learning Rust](https://asifdotexe.github.io/journals/getting-rusty-journal/), as this would make the software even faster {% endsidenote %}
 
-![Anatomy of a statement](..\assets\notes_assets\fallacy-classifier\anatomy_of_statement.png)
+![Anatomy of a statement](../assets/notes_assets/fallacy-classifier/anatomy_of_statement.png)
 
 And provides you with an evalution that gives you two things
 - Whether any fallacy {% sidenote "fallacy" %} A statement or an argument based on a false or invalid inference. {% endsidenote %} 
@@ -49,7 +49,7 @@ This is to ensure that both parties have a easier time as you will gain the abil
 
 Currently the way elenchus works is by recording you on adhoc basis and giving you rationale / rebuttals, so you can think of it as a sparring partner for you. I had attached a screenshot of how it looks below
 
-![Elenchus HUD](..\assets\notes_assets\fallacy-classifier\elenchus-hood.png)
+![Elenchus HUD](../assets/notes_assets/fallacy-classifier/elenchus-hood.png)
 
 You can check out the UI evolution in the following issue to check the trail: [https://github.com/Asifdotexe/Elenchus/issues/3](https://github.com/Asifdotexe/Elenchus/issues/3)
 

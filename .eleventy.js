@@ -2,8 +2,62 @@ const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const markdownIt = require("markdown-it");
 const texmath = require("markdown-it-texmath");
 const katex = require("katex");
+const fs = require("fs");
+const path = require("path");
 
 module.exports = function(eleventyConfig) {
+  const isGithubActions = !!process.env.GITHUB_ACTIONS;
+  const pathPrefix = isGithubActions ? "/journals/" : "/";
+
+  // Helper to resolve an asset path against assets/
+  function resolveAssetSrc(rawSrc, fileSlug) {
+    if (!rawSrc) return rawSrc;
+    // Normalize Windows backslashes
+    let src = rawSrc.replace(/\\/g, "/");
+
+    // Don't modify external URLs or data URIs
+    if (src.startsWith("http://") || src.startsWith("https://") || src.startsWith("//") || src.startsWith("data:")) {
+      return src;
+    }
+
+    // If it points to assets (e.g. "../assets/...", "/assets/...", "assets/...", "..\assets\...")
+    if (src.includes("assets/")) {
+      const assetSubpath = src.slice(src.indexOf("assets/"));
+      return `${pathPrefix}${assetSubpath}`.replace(/\/+/g, "/");
+    }
+
+    // If a simple filename was given (e.g. "under-tech.png" or "./under-tech.png")
+    const cleanName = src.replace(/^\.\//, "");
+    if (fileSlug) {
+      const perPostCandidate = path.join(__dirname, "assets", "notes_assets", fileSlug, cleanName);
+      if (fs.existsSync(perPostCandidate)) {
+        return `${pathPrefix}assets/notes_assets/${fileSlug}/${cleanName}`.replace(/\/+/g, "/");
+      }
+    }
+
+    const directCandidate = path.join(__dirname, "assets", cleanName);
+    if (fs.existsSync(directCandidate)) {
+      return `${pathPrefix}assets/${cleanName}`.replace(/\/+/g, "/");
+    }
+
+    // Check notes_assets subdirectories generally as a fallback
+    const notesAssetsDir = path.join(__dirname, "assets", "notes_assets");
+    if (fs.existsSync(notesAssetsDir)) {
+      try {
+        const subdirs = fs.readdirSync(notesAssetsDir);
+        for (const subdir of subdirs) {
+          if (fs.existsSync(path.join(notesAssetsDir, subdir, cleanName))) {
+            return `${pathPrefix}assets/notes_assets/${subdir}/${cleanName}`.replace(/\/+/g, "/");
+          }
+        }
+      } catch (e) {
+        // ignore
+      }
+    }
+
+    return src;
+  }
+
   const markdownLib = markdownIt({
     html: true,
     breaks: false,
@@ -15,6 +69,41 @@ module.exports = function(eleventyConfig) {
       throwOnError: false
     }
   });
+
+  // Custom image renderer rule: normalizes relative/asset paths for both local and GitHub Pages
+  const defaultImageRender = markdownLib.renderer.rules.image || function(tokens, idx, options, env, self) {
+    return self.renderToken(tokens, idx, options);
+  };
+
+  markdownLib.renderer.rules.image = function (tokens, idx, options, env, self) {
+    const token = tokens[idx];
+    const srcIndex = token.attrIndex("src");
+    if (srcIndex >= 0) {
+      const rawSrc = token.attrs[srcIndex][1] || "";
+      const fileSlug = env?.page?.fileSlug;
+      token.attrs[srcIndex][1] = resolveAssetSrc(rawSrc, fileSlug);
+    }
+    return defaultImageRender(tokens, idx, options, env, self);
+  };
+
+  // Custom link renderer rule: open non-anchor links in a new tab
+  const defaultLinkRender = markdownLib.renderer.rules.link_open || function(tokens, idx, options, env, self) {
+    return self.renderToken(tokens, idx, options);
+  };
+
+  markdownLib.renderer.rules.link_open = function (tokens, idx, options, env, self) {
+    const token = tokens[idx];
+    const hrefIndex = token.attrIndex("href");
+    if (hrefIndex >= 0) {
+      const href = token.attrs[hrefIndex][1] || "";
+      if (!href.startsWith("#")) {
+        token.attrSet("target", "_blank");
+        token.attrSet("rel", "noopener noreferrer");
+      }
+    }
+    return defaultLinkRender(tokens, idx, options, env, self);
+  };
+
   eleventyConfig.setLibrary("md", markdownLib);
 
   eleventyConfig.addPlugin(syntaxHighlight);
@@ -73,10 +162,8 @@ module.exports = function(eleventyConfig) {
     });
   });
 
-  const isGithubActions = process.env.GITHUB_ACTIONS || false;
-
   return {
-    pathPrefix: isGithubActions ? "/journals/" : "/",
+    pathPrefix: pathPrefix,
     dir: {
       input: ".",
       includes: "_includes",
