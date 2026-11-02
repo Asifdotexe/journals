@@ -6,6 +6,7 @@ date: 2026-10-26
 excerpt: Journalling the mistakes made during the v1.0.0 of Theseus and how we fixed them in v2.0.0
 tags:
   - project
+  - theseus
 ---
 <style>
 .post-header h1 {

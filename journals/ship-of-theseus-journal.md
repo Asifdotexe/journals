@@ -6,6 +6,7 @@ date: 2026-07-26
 excerpt: This journal contains all the decisions I made and why I made them while developing towards updating / refactoring the Ship of Theseus project
 tags:
   - project
+  - theseus
 ---
 <style>
 .post-header h1 {
